@@ -8,6 +8,7 @@ struct TP7CompanionApp: App {
         WindowGroup(id: "main") {
             ContentView()
                 .environment(model)
+                .preferredColorScheme(model.appearance.colorScheme)
         }
         .commands {
             SoundMenuCommands()
@@ -15,10 +16,12 @@ struct TP7CompanionApp: App {
         Settings {
             SettingsView()
                 .environment(model)
+                .preferredColorScheme(model.appearance.colorScheme)
         }
         MenuBarExtra {
             MenuBarView()
                 .environment(model)
+                .preferredColorScheme(model.appearance.colorScheme)
         } label: {
             // The menu bar renders template-mono, so state reads through
             // symbol choice, pulse, and the unseen count — not colour.

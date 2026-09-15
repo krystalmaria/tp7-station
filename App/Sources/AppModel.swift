@@ -1,9 +1,31 @@
 import Foundation
 import AppKit
+import SwiftUI
 import Observation
 import UserNotifications
 import TP7Kit
 import InboxKit
+
+enum AppAppearance: String, CaseIterable, Identifiable {
+    case system, light, dark
+
+    var id: String { rawValue }
+    var label: String {
+        switch self {
+        case .system: "system"
+        case .light: "light"
+        case .dark: "dark"
+        }
+    }
+    /// nil lets SwiftUI/AppKit follow the OS setting, same as today's default.
+    var colorScheme: ColorScheme? {
+        switch self {
+        case .system: nil
+        case .light: .light
+        case .dark: .dark
+        }
+    }
+}
 
 struct InboxItem: Identifiable, Equatable {
     let id: String
@@ -69,6 +91,9 @@ final class AppModel {
     var symbolicKeyGlyphs: Bool {
         didSet { UserDefaults.standard.set(symbolicKeyGlyphs, forKey: "symbolicKeyGlyphs") }
     }
+    var appearance: AppAppearance {
+        didSet { UserDefaults.standard.set(appearance.rawValue, forKey: "appearance") }
+    }
     /// Camera-import style: once a memo is verified in the archive (and
     /// transcribed, when that's on), the device copy is removed.
     var deleteMemosAfterImport: Bool {
@@ -106,6 +131,7 @@ final class AppModel {
         self.transcribeMemos = defaults.object(forKey: "transcribeMemos") as? Bool ?? true
         self.smartTitles = defaults.object(forKey: "smartTitles") as? Bool ?? true
         self.symbolicKeyGlyphs = defaults.object(forKey: "symbolicKeyGlyphs") as? Bool ?? false
+        self.appearance = defaults.string(forKey: "appearance").flatMap(AppAppearance.init) ?? .system
         self.deleteMemosAfterImport = defaults.object(forKey: "deleteMemosAfterImport") as? Bool ?? false
         self.renameOnDevice = defaults.object(forKey: "renameOnDevice") as? Bool ?? true
         self.syncLibrary = defaults.object(forKey: "syncLibrary") as? Bool ?? true

@@ -53,11 +53,22 @@ public struct CLIProcessTransport: TP7Transport {
     public let timeout: Duration
 
     public init(
-        executable: URL = URL(fileURLWithPath: "/opt/homebrew/bin/tp7"),
+        executable: URL = CLIProcessTransport.resolveExecutable(),
         timeout: Duration = .seconds(180)
     ) {
         self.executable = executable
         self.timeout = timeout
+    }
+
+    /// A signed release bundles its own copy of the CLI in Resources — found
+    /// there first, so a downloaded app needs no Homebrew/Rust toolchain at
+    /// all. A local `swift build`/dev run (no such resource) falls back to
+    /// the Homebrew install, leaving the everyday dev workflow unchanged.
+    public static func resolveExecutable() -> URL {
+        if let bundled = Bundle.main.url(forResource: "tp7", withExtension: nil) {
+            return bundled
+        }
+        return URL(fileURLWithPath: "/opt/homebrew/bin/tp7")
     }
 
     public func run(_ arguments: [String]) async throws -> Data {

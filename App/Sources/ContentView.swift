@@ -781,6 +781,12 @@ struct SettingsView: View {
                     .foregroundStyle(.secondary)
             }
             Section("Interface") {
+                Picker("Appearance", selection: $model.appearance) {
+                    ForEach(AppAppearance.allCases) { option in
+                        Text(option.label).tag(option)
+                    }
+                }
+                .pickerStyle(.segmented)
                 Toggle("Symbolic key glyphs", isOn: $model.symbolicKeyGlyphs)
                     .tint(TE.orange)
                 Text("Shows shortcuts in classic Mac keycap notation (⇥ ⌫ ⎋) instead of plain words.")
