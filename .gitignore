@@ -1,0 +1,6 @@
+.DS_Store
+*.xcodeproj
+Core/.build/
+DerivedData/
+.notion-card
+.build-app/
