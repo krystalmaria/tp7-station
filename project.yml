@@ -1,0 +1,35 @@
+name: TP7Companion
+options:
+  bundleIdPrefix: cc.starkly
+  deploymentTarget:
+    macOS: "26.0"
+packages:
+  Core:
+    path: Core
+targets:
+  TP7Companion:
+    type: application
+    platform: macOS
+    sources:
+      - App/Sources
+      - App/Resources
+    dependencies:
+      - package: Core
+        product: TP7Kit
+      - package: Core
+        product: AudioMetaKit
+      - package: Core
+        product: InboxKit
+    settings:
+      base:
+        PRODUCT_NAME: tp7-station
+        INFOPLIST_KEY_CFBundleDisplayName: tp7-station
+        PRODUCT_BUNDLE_IDENTIFIER: cc.starkly.TP7Companion
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.music
+        INFOPLIST_KEY_NSSpeechRecognitionUsageDescription: Transcribes TP-7 memos locally on this Mac.
+        CODE_SIGN_STYLE: Automatic
+        CODE_SIGN_IDENTITY: "-"
+        SWIFT_VERSION: "6.0"
+        ENABLE_HARDENED_RUNTIME: NO
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
