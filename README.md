@@ -1,5 +1,7 @@
 # tp7-station
 
+**[Download for Mac](https://github.com/krystalmaria/tp7-station/releases/latest/download/tp7-station.dmg)** · [Source code](https://github.com/krystalmaria/tp7-station) · macOS 26+, signed and notarized
+
 A native macOS station for the Teenage Engineering [TP-7 field recorder](https://teenage.engineering/products/tp-7). Plug in the recorder and it pulls new recordings automatically, transcribes voice memos on-device, and gives each one a title, no cloud involved. Send any memo to a markdown notes folder you choose (built with Obsidian in mind but it's just plain files) whenever you decide it's worth keeping. Rename a memo in the app and the file on the TP-7 itself picks up that name at the next sync.
 
 Every recording and library track gets a waveform with in-app playback, and cue points can be added, dragged, nudged, and deleted with DAW-style keyboard controls, then written back into the WAV so the markers appear under the TP-7's physical cue controls.

@@ -74,5 +74,15 @@ spctl --assess --type open --context context:primary-signature --verbose "$DMG_P
 echo "==> Checksum"
 shasum -a 256 "$DMG_PATH" | tee "$DMG_PATH.sha256"
 
+# The README's download link is the stable, version-free
+# .../releases/latest/download/tp7-station.dmg URL, so it never needs
+# editing on a new release — the asset filename must stay constant to
+# match it. The versioned copy above stays too, for the release notes.
+STABLE_PATH="$BUILD_DIR/${APP_NAME}.dmg"
+cp "$DMG_PATH" "$STABLE_PATH"
+shasum -a 256 "$STABLE_PATH" | tee "$STABLE_PATH.sha256"
+
 echo ""
 echo "Done: $DMG_PATH"
+echo "Stable-named copy for the release asset: $STABLE_PATH"
+echo "Attach BOTH files (plus their .sha256s) to the GitHub Release."
