@@ -18,7 +18,7 @@ _If you're an Obsidian user you can set your vault as a save location for memos 
 - **Cue editing**: waveforms with draggable cue markers, undo, zoom with an overview strip, peak snap, remappable shortcuts, and a hold-⌘ shortcut overlay; edits are written into the file and pushed back to the device.
 - **File management**: rename a memo by its title (the device filename follows automatically) or a recording/library file by its raw name; delete from the device, the local archive, or both; add songs to the TP-7 library.
 - **A menu bar reel** that pulses while syncing and plays your latest memos from the dropdown.
-- **Keyboard shortcuts** use common DAQ patterns and are configurable in settings.
+- **Keyboard shortcuts** use common DAW patterns and are configurable in settings.
   <img width="1920" height="1440" alt="station-recordings-shortcuts" src="https://github.com/user-attachments/assets/bf6d1633-2770-4617-8492-c01fed4e9d82" />
 
 
